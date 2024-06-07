@@ -59,36 +59,29 @@ public class StarField : MonoBehaviour {
         // 2024-1-1 0:00 Shinjuku Area
 
 
-        //North Side
         // Camelopardalis (きりん座)
         (new int[] { 2527, 2209, 1542, 1148, 1155, 1129, 1603, 1568 },
       new int[] { 2527, 2209, 2209, 1542, 1542, 1148, 1542, 1603, 1148, 1155, 1155, 1129, 1603, 1568 }),
 
 
-        // Lynx (やまねこ座)
-        (new int[] { 3705, 3690, 3612, 3579, 3275, 2818, 2560, 2238 },
-      new int[] { 3705, 3690, 3690, 3612, 3612, 3579, 3579, 3275, 3275, 2818,
-                2818, 2560, 2560, 2238 }),
+
         //Ursa Minor(こぐま座)
         (new int[] { 424, 6789, 6322, 5903, 5563, 5735, 6116 },
       new int[] { 424, 6789, 6789, 6322, 6322, 5903, 5903, 5563, 5563, 5735, 5735, 6116, 6116, 5903 }),
 
-
-        //West Side
-
+        // Lynx (やまねこ座)
+        (new int[] { 3705, 3690, 3612, 3579, 3275, 2818, 2560, 2238 },
+      new int[] { 3705, 3690, 3690, 3612, 3612, 3579, 3579, 3275, 3275, 2818,
+                2818, 2560, 2560, 2238 }),
 
         // Auriga (ぎょしゃ座)
         (new int[] { 2077, 2088, 2095, 1791, 1577, 1708, 1605, 1612 },
-      new int[] { 2077, 2088, 2088, 2095, 2095, 1791, 1577, 1577, 1708, 1708, 2077, 1708, 1605, 1605, 1612 }),
+      new int[] { 2077, 2088, 2088, 2095, 2095, 1791, 1791, 1577, 1577, 1708, 1708, 2077, 1708, 1605, 1605, 1612 }),
 
 
         // Aries (おひつじ座)
         (new int[] { 838, 617, 553, 546 },
       new int[] { 838, 617, 617, 553, 553, 546 }),
-
-
-        //South Side
-
 
         // Canis Minor (こいぬ座)
         (new int[] { 2943, 2845 },
@@ -109,18 +102,80 @@ public class StarField : MonoBehaviour {
                 2124, 2199, 2199, 2135, 2199, 2159, 2159, 2047, 1790, 1543,
                 1543, 1544, 1544, 1570, 1543, 1552, 1552, 1567, 2135, 2047 }),
 
+        //Pegasus(ペガスス座)  Press 
+        (new int[] { 39, 15, 8775, 8781, 8450, 8308, 8667, 8315, 8454 },
+    new int[] { 39, 15, 15, 8775, 8775, 8781, 8781, 39, 8781, 8450, 8450, 8308, 8775, 8667, 8667, 8315, 8775, 8454 }),
+
+        //Bootes(うしかい座) Press 
+        (new int[] { 5404, 5329, 5351, 5435, 5602, 5681, 5429, 5340, 5478, 5235 },
+    new int[] { 5404, 5329, 5329, 5351, 5351, 5404, 5351, 5435, 5435, 5602, 5602, 5681, 5681, 5340, 5429, 5340, 5435, 5429, 5340, 5478, 5340, 5235 }),
+
+
+
+
+        // Scorpius (さそり座) Press
+        (new int[] { 6508, 6580, 6615, 6553, 6380, 6271, 6252, 6241, 6165, 6134, 6084, 5953, 5984, 5944, 5928 },
+    new int[] {6508,6580,6580,6615,6615,6553,6553,6380,6380,6271,6271,6252,6252,6241,
+ 6241,6165,6165,6134,6134,6084,6084,5953,5953,5984,5953,5944,5944,5928}),
+
+        //Libra (てんびん座) Press
+        (new int[] { 5685, 5787, 5531, 5794, 5603 },
+    new int[] { 5685, 5787, 5787, 5531, 5531, 5685, 5787, 5794, 5603, 5531 }),
+
+        //Draco(りゅう座）
+        (new int[] { 4434, 4787, 5291, 5744, 5986, 6132, 6396, 6920, 7310, 6688, 6705, 6536, 6555 },
+      new int[] { 4434, 4787, 4787, 5291, 5291, 5744, 5744, 5986, 5986, 6132, 6132, 6396, 6396, 6920, 6920, 7310, 7310, 6688, 6688, 6705, 6705, 6536, 6536, 6555, 6555, 6688 }),
+        //Cetus(くじら座）
+        (new int[] { 813, 896, 911, 804, 718, 779, 681, 539, 740, 509, 585, 188, 74, 334, 402 },
+      new int[] { 813, 896, 896, 911, 911, 804, 804, 718, 718, 813, 804, 779, 779, 681, 681, 539, 539, 740, 539, 509, 509, 585, 509, 188, 188, 74, 74, 334, 334, 402, 402, 539 }),
+        //Canis Major (おおいぬ座)
+        (new int[] { 2657, 2596, 2574, 2491, 2294, 2429, 2580, 2618, 2693, 2827 },
+      new int[] { 2657, 2596, 2596, 2574, 2574, 2657, 2596, 2491, 2491, 2294, 2294, 2429, 2429, 2580, 2580, 2618, 2618, 2693, 2693, 2827, 2693, 2491 }),
+        //Perseus(ペルセウス座）Press 
+        (new int[] { 1261, 1303, 1273, 1122, 1220, 1228, 1203, 1131, 1017, 915, 834, 854, 937, 936, 921, 799, 496 },
+      new int[] { 1261, 1303, 1303, 1273, 1273, 1122, 1220, 1122, 1017, 1122, 1220, 1228, 1228, 1203, 1203, 1131, 1017, 915,
+                  915, 834, 834, 854, 854, 937, 937, 936, 936, 921, 799, 496, 1017, 937, 937, 799, 1220, 936 }),
+
     };
 
-  private void Update() {
-    // Check for numeric presses and toggle the constellation highlighting.
-    for (int i = 0; i < 10; i++) {
-      if (Input.GetKeyDown(KeyCode.Alpha0 + i)) {
-        ToggleConstellation(i);
-      }
-    }
-  }
+    private void Update()
+    {
+        // Check for numeric presses and toggle the constellation highlighting.
+        for (int i = 0; i < 10; i++)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha0 + i))
+            {
+                ToggleConstellation(i);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            int specialConstellationIndex = 10; // Define the index for the special constellation.
+            ToggleConstellation(specialConstellationIndex);
+        }
+        // Check for the 'b' key press and toggle another specific constellation.
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            int specialConstellationIndexW = 11; // Define the index for the special constellation 'b'.
+            ToggleConstellation(specialConstellationIndexW);
+        }
 
-  void ToggleConstellation(int index) {
+        // Check for the 'c' key press and toggle another specific constellation.
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            int specialConstellationIndexE = 12; // Define the index for the special constellation 'c'.
+            ToggleConstellation(specialConstellationIndexE);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            int specialConstellationIndexR = 13; // Define the index for the special constellation 'c'.
+            ToggleConstellation(specialConstellationIndexR);
+        }
+
+    }
+
+
+    void ToggleConstellation(int index) {
     // Safety check the index is valid.
     if ((index < 0) || (index >= constellations.Count)) {
       return;
