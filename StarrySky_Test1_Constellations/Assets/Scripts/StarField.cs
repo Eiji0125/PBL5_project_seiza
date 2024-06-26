@@ -1,57 +1,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StarField : MonoBehaviour {
-  [Range(0, 100)]
-  [SerializeField] private float starSizeMin = 0f;
-  [Range(0, 100)]
-  [SerializeField] private float starSizeMax = 5f;
-  private List<StarDataLoader.Star> stars;
-  private List<GameObject> starObjects;
-  private Dictionary<int, GameObject> constellationVisible = new();
+public class StarField : MonoBehaviour
+{
+    [Range(0, 100)]
+    [SerializeField] private float starSizeMin = 0f;
+    [Range(0, 100)]
+    [SerializeField] private float starSizeMax = 5f;
+    private List<StarDataLoader.Star> stars;
+    private List<GameObject> starObjects;
+    private Dictionary<int, GameObject> constellationVisible = new();
 
-  private readonly int starFieldScale = 400;
+    private readonly int starFieldScale = 400;
 
-  void Start() {
-    // Read in the star data.
-    StarDataLoader sdl = new();
-    stars = sdl.LoadData();
-    starObjects = new();
-    foreach (StarDataLoader.Star star in stars) {
-      // Create star game objects.
-      GameObject stargo = GameObject.CreatePrimitive(PrimitiveType.Quad);
-      stargo.transform.parent = transform;
-      stargo.name = $"HR {star.catalog_number}";
-      stargo.transform.localPosition = star.position * starFieldScale;
-      //stargo.transform.localScale = Vector3.one * Mathf.Lerp(starSizeMin, starSizeMax, star.size);
-      stargo.transform.LookAt(transform.position);
-      stargo.transform.Rotate(0, 180, 0);
-      Material material = stargo.GetComponent<MeshRenderer>().material;
-      material.shader = Shader.Find("Unlit/StarShader");
-      material.SetFloat("_Size", Mathf.Lerp(starSizeMin, starSizeMax, star.size));
-      material.color = star.colour;
-      starObjects.Add(stargo);
+    void Start()
+    {
+        // Read in the star data.
+        StarDataLoader sdl = new();
+        stars = sdl.LoadData();
+        starObjects = new();
+        foreach (StarDataLoader.Star star in stars)
+        {
+            // Create star game objects.
+            GameObject stargo = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            stargo.transform.parent = transform;
+            stargo.name = $"HR {star.catalog_number}";
+            stargo.transform.localPosition = star.position * starFieldScale;
+            //stargo.transform.localScale = Vector3.one * Mathf.Lerp(starSizeMin, starSizeMax, star.size);
+            stargo.transform.LookAt(transform.position);
+            stargo.transform.Rotate(0, 180, 0);
+            Material material = stargo.GetComponent<MeshRenderer>().material;
+            material.shader = Shader.Find("Unlit/StarShader");
+            material.SetFloat("_Size", Mathf.Lerp(starSizeMin, starSizeMax, star.size));
+            material.color = star.colour;
+            starObjects.Add(stargo);
+        }
     }
-  }
 
-  // Could also do in Update with Time.deltatime scaling.
-  private void FixedUpdate() {
-    if (Input.GetKey(KeyCode.Mouse1)) {
-      Camera.main.transform.RotateAround(Camera.main.transform.position, Camera.main.transform.right, Input.GetAxis("Mouse Y"));
-      Camera.main.transform.RotateAround(Camera.main.transform.position, Vector3.up, -Input.GetAxis("Mouse X"));
+    // Could also do in Update with Time.deltatime scaling.
+    private void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            Camera.main.transform.RotateAround(Camera.main.transform.position, Camera.main.transform.right, Input.GetAxis("Mouse Y"));
+            Camera.main.transform.RotateAround(Camera.main.transform.position, Vector3.up, -Input.GetAxis("Mouse X"));
+        }
+        return;
     }
-    return;
-  }
 
-  private void OnValidate() {
-    if (starObjects != null) {
-      for (int i = 0; i < starObjects.Count; i++) {
-        // Update the size set in the shader.
-        Material material = starObjects[i].GetComponent<MeshRenderer>().material;
-        material.SetFloat("_Size", Mathf.Lerp(starSizeMin, starSizeMax, stars[i].size));
-      }
+    private void OnValidate()
+    {
+        if (starObjects != null)
+        {
+            for (int i = 0; i < starObjects.Count; i++)
+            {
+                // Update the size set in the shader.
+                Material material = starObjects[i].GetComponent<MeshRenderer>().material;
+                material.SetFloat("_Size", Mathf.Lerp(starSizeMin, starSizeMax, stars[i].size));
+            }
+        }
     }
-  }
 
     // A constellation is a tuple of the stars and the lines that join them.
     private readonly List<(int[], int[])> constellations = new()
@@ -170,68 +178,78 @@ public class StarField : MonoBehaviour {
     }
 
 
-    void ToggleConstellation(int index) {
-    // Safety check the index is valid.
-    if ((index < 0) || (index >= constellations.Count)) {
-      return;
+    void ToggleConstellation(int index)
+    {
+        // Safety check the index is valid.
+        if ((index < 0) || (index >= constellations.Count))
+        {
+            return;
+        }
+
+        // Toggle on or off.
+        if (constellationVisible.ContainsKey(index))
+        {
+            RemoveConstellation(index);
+        }
+        else
+        {
+            CreateConstellation(index);
+        }
     }
 
-    // Toggle on or off.
-    if (constellationVisible.ContainsKey(index)) {
-      RemoveConstellation(index);
-    } else {
-      CreateConstellation(index);
+    void CreateConstellation(int index)
+    {
+        int[] constellation = constellations[index].Item1;
+        int[] lines = constellations[index].Item2;
+
+        // Change the colours of the stars
+        foreach (int catalogNumber in constellation)
+        {
+            // Remember list is 0-up catalog numbers are 1-up.
+            starObjects[catalogNumber - 1].GetComponent<MeshRenderer>().material.color = Color.white;
+        }
+
+        GameObject constellationHolder = new($"Constellation {index}");
+        constellationHolder.transform.parent = transform;
+        constellationVisible[index] = constellationHolder;
+
+        // Draw the constellation lines.
+        for (int i = 0; i < lines.Length; i += 2)
+        {
+            // Parent it to our constellation object so we can delete them all later.
+            GameObject line = new("Line");
+            line.transform.parent = constellationHolder.transform;
+            // Defaults to white and width 1 which works for us.
+            LineRenderer lineRenderer = line.AddComponent<LineRenderer>();
+            // Doesn't get assigned a material so just dig out one that works.
+            lineRenderer.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
+            // Disable useWorldSpace so it will track the parent game object.
+            lineRenderer.useWorldSpace = false;
+            Vector3 pos1 = starObjects[lines[i] - 1].transform.position;
+            Vector3 pos2 = starObjects[lines[i + 1] - 1].transform.position;
+            // Offset them so they don't occlude the stars, 3 chosen by trial and error.
+            Vector3 dir = (pos2 - pos1).normalized * 3;
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPosition(0, pos1 + dir);
+            lineRenderer.SetPosition(1, pos2 - dir);
+        }
     }
-  }
 
-  void CreateConstellation(int index) {
-    int[] constellation = constellations[index].Item1;
-    int[] lines = constellations[index].Item2;
+    void RemoveConstellation(int index)
+    {
+        int[] constallation = constellations[index].Item1;
 
-    // Change the colours of the stars
-    foreach (int catalogNumber in constellation) {
-      // Remember list is 0-up catalog numbers are 1-up.
-      starObjects[catalogNumber - 1].GetComponent<MeshRenderer>().material.color = Color.white;
+        // Toggling off set the stars back to the original colour.
+        foreach (int catalogNumber in constallation)
+        {
+            // Remember list is 0-up catalog numbers are 1-up.
+            starObjects[catalogNumber - 1].GetComponent<MeshRenderer>().material.color = stars[catalogNumber - 1].colour;
+        }
+        // Remove the constellation lines.
+        Destroy(constellationVisible[index]);
+        // Remove from our dictionary as it's now off.
+        constellationVisible.Remove(index);
     }
-
-    GameObject constellationHolder = new($"Constellation {index}");
-    constellationHolder.transform.parent = transform;
-    constellationVisible[index] = constellationHolder;
-
-    // Draw the constellation lines.
-    for (int i = 0; i < lines.Length; i += 2) {
-      // Parent it to our constellation object so we can delete them all later.
-      GameObject line = new("Line");
-      line.transform.parent = constellationHolder.transform;
-      // Defaults to white and width 1 which works for us.
-      LineRenderer lineRenderer = line.AddComponent<LineRenderer>();
-      // Doesn't get assigned a material so just dig out one that works.
-      lineRenderer.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
-      // Disable useWorldSpace so it will track the parent game object.
-      lineRenderer.useWorldSpace = false;
-      Vector3 pos1 = starObjects[lines[i] - 1].transform.position;
-      Vector3 pos2 = starObjects[lines[i + 1] - 1].transform.position;
-      // Offset them so they don't occlude the stars, 3 chosen by trial and error.
-      Vector3 dir = (pos2 - pos1).normalized * 3;
-      lineRenderer.positionCount = 2;
-      lineRenderer.SetPosition(0, pos1 + dir);
-      lineRenderer.SetPosition(1, pos2 - dir);
-    }
-  }
-
-  void RemoveConstellation(int index) {
-    int[] constallation = constellations[index].Item1;
-
-    // Toggling off set the stars back to the original colour.
-    foreach (int catalogNumber in constallation) {
-      // Remember list is 0-up catalog numbers are 1-up.
-      starObjects[catalogNumber - 1].GetComponent<MeshRenderer>().material.color = stars[catalogNumber - 1].colour;
-    }
-    // Remove the constellation lines.
-    Destroy(constellationVisible[index]);
-    // Remove from our dictionary as it's now off.
-    constellationVisible.Remove(index);
-  }
 
 }
 

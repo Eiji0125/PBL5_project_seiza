@@ -1,10 +1,6 @@
 {
   "actions": [
     {
-      "name": "/actions/default/in/InteractUI",
-      "type": "boolean"
-    },
-    {
       "name": "/actions/default/in/Teleport",
       "type": "boolean"
     },
@@ -50,6 +46,14 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/Boolean",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/Vector2",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
@@ -86,7 +90,7 @@
   "action_sets": [
     {
       "name": "/actions/default",
-      "usage": "leftright"
+      "usage": "single"
     },
     {
       "name": "/actions/platformer",
@@ -161,7 +165,6 @@
       "/actions/default/in/GrabGrip": "Grab Grip",
       "/actions/default/in/GrabPinch": "Grab Pinch",
       "/actions/default/in/HeadsetOnHead": "Headset on head (proximity sensor)",
-      "/actions/default/in/InteractUI": "Interact With UI",
       "/actions/default/in/Pose": "Pose",
       "/actions/default/in/SkeletonLeftHand": "Skeleton (Left)",
       "/actions/default/in/SkeletonRightHand": "Skeleton (Right)",
