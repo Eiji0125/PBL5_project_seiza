@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ColorManager : MonoBehaviour {
 
+
+ 	public GameObject menuPanel;
+	public InputActionReference openMenuAction;
+	
 
     public static ColorManager instance = null;
     public Color color = Color.blue;
@@ -27,7 +32,39 @@ public class ColorManager : MonoBehaviour {
         //DontDestroyOnLoad(gameObject);
 
         //cloudLabel = Instantiate(Resources.Load("CloudLabel", typeof(GameObject)), new Vector3(100.0f, 100.0f, 100.0f), Quaternion.identity) as GameObject;
+
+	openMenuAction.action.Enable();
+	openMenuAction.action.performed += ToggleMenu;
+	InputSystem.onDeviceChange += OnDeviceChange;
     }
+
+    public void OnDestroy()
+    {
+        openMenuAction.action.Disable();
+	    openMenuAction.action.performed -= ToggleMenu;
+	    InputSystem.onDeviceChange += OnDeviceChange;
+    }
+
+    private void ToggleMenu(InputAction.CallbackContext context)
+    {
+        menuPanel.SetActive(!menuPanel.activeSelf);
+    }
+
+    private void OnDeviceChange(InputDevice device, InputDeviceChange change)
+    {
+        switch (change)
+        {
+           case InputDeviceChange.Disconnected:
+                openMenuAction.action.Disable();
+                openMenuAction.action.performed -= ToggleMenu;
+                break;
+            case InputDeviceChange.Reconnected:
+                openMenuAction.action.Enable();
+                openMenuAction.action.performed += ToggleMenu;
+                break;
+        }
+    }
+
 
     public static ColorManager Instance
     {
