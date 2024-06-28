@@ -68,7 +68,6 @@ namespace Valve.VR
 
         protected SteamVR_HistoryBuffer historyBuffer = new SteamVR_HistoryBuffer(30);
 
-
         protected virtual void Start()
         {
             if (poseAction == null)
@@ -81,6 +80,13 @@ namespace Valve.VR
 
             if (origin == null)
                 origin = this.transform.parent;
+
+            // Set event handlers
+            onTransformUpdated.AddListener(OnTransformUpdated);
+            onTransformChanged.AddListener(OnTransformChanged);
+            onConnectedChanged.AddListener(OnConnectedChanged);
+            onTrackingChanged.AddListener(OnTrackingChanged);
+            onDeviceIndexChanged.AddListener(OnDeviceIndexChanged);
         }
 
         protected virtual void OnEnable()
@@ -120,6 +126,7 @@ namespace Valve.VR
             if (onTransformUpdatedEvent != null)
                 onTransformUpdatedEvent.Invoke(this, inputSource);
         }
+
         protected virtual void UpdateTransform()
         {
             CheckDeviceIndex();
@@ -259,5 +266,35 @@ namespace Valve.VR
         public delegate void ValidPoseChangeHandler(SteamVR_Behaviour_Pose fromAction, SteamVR_Input_Sources fromSource, bool validPose);
         public delegate void DeviceConnectedChangeHandler(SteamVR_Behaviour_Pose fromAction, SteamVR_Input_Sources fromSource, bool deviceConnected);
         public delegate void DeviceIndexChangedHandler(SteamVR_Behaviour_Pose fromAction, SteamVR_Input_Sources fromSource, int newDeviceIndex);
+
+        private void OnTransformUpdated(SteamVR_Behaviour_Pose fromAction, SteamVR_Input_Sources fromSource)
+        {
+            // カスタムロジックを追加
+            Debug.Log("Transform Updated");
+        }
+
+        private void OnTransformChanged(SteamVR_Behaviour_Pose fromAction, SteamVR_Input_Sources fromSource)
+        {
+            // カスタムロジックを追加
+            Debug.Log("Transform Changed");
+        }
+
+        private void OnConnectedChanged(SteamVR_Behaviour_Pose fromAction, SteamVR_Input_Sources fromSource, bool connected)
+        {
+            // カスタムロジックを追加
+            Debug.Log("Connected Changed: " + connected);
+        }
+
+        private void OnTrackingChanged(SteamVR_Behaviour_Pose fromAction, SteamVR_Input_Sources fromSource, ETrackingResult trackingChanged)
+        {
+            // カスタムロジックを追加
+            Debug.Log("Tracking Changed: " + trackingChanged);
+        }
+
+        private void OnDeviceIndexChanged(SteamVR_Behaviour_Pose fromAction, SteamVR_Input_Sources fromSource, int newDeviceIndex)
+        {
+            // カスタムロジックを追加
+            Debug.Log("Device Index Changed: " + newDeviceIndex);
+        }
     }
 }
