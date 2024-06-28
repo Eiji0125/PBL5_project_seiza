@@ -1,0 +1,118 @@
+{
+    "name": "ControllerControls",
+    "maps": [
+        {
+            "name": "SelectMenu",
+            "id": "15b0c2a7-a16f-432e-9130-af3dd671817c",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "0520ddf8-994a-47e2-963f-68bc8dca034d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "14dd73a8-d474-427f-92a0-876ba14b4707",
+                    "path": "<ViveController>/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "ToggleMenu",
+            "id": "46e3b5b8-62ea-4266-8dc4-33bd806a661b",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "468368e6-55c6-4071-8bd3-d611904e38f8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ddee81d7-95a8-4afb-9f32-ba9886f4baa7",
+                    "path": "<ViveController>/trackpadClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "DrawingLine",
+            "id": "bfd7fbc6-ec27-433b-a7ae-b606143c70bf",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "c133351f-ac93-41d0-9b39-afbdf561a326",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e201f8ee-986e-424d-bf5d-4abf7434ecc4",
+                    "path": "<ViveController>/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "ChangeDrawingDistance",
+            "id": "db76ea02-3ca0-41d6-b950-38073746f73a",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "5ce8ecb8-0958-43c7-b918-57fda3c267f3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5a7ff5e7-91b7-412c-9d72-616c221a0ef2",
+                    "path": "<ViveController>/trackpadTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

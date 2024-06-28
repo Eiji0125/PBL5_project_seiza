@@ -1,45 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-/*
-class Point {
-    public Vector3 p;
-    public Point next;
-}
-*/
-
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
 public class MeshLineRenderer : MonoBehaviour
 {
-
     public ColorManager colorMgr;
-
     public Material lmat;
-
     private Mesh ml;
-
     private Vector3 s;
-
     private float lineSize = .1f;
-
     private bool firstQuad = true;
 
     void Start()
     {
         ml = GetComponent<MeshFilter>().mesh;
-
-        //Set the main Color of the Material to green
     }
-
 
     public void setColorManager(ColorManager colMgr)
     {
         colorMgr = colMgr;
-
         GetComponent<MeshRenderer>().material.color = colorMgr.color;
-        //GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-        //GetComponent<MeshRenderer>().receiveShadows = false;
     }
 
     public void setWidth(float width)
@@ -54,24 +35,13 @@ public class MeshLineRenderer : MonoBehaviour
             AddLine(ml, MakeQuad(s, point, lineSize, firstQuad));
             firstQuad = false;
         }
-
         s = point;
     }
 
     Vector3[] MakeQuad(Vector3 s, Vector3 e, float w, bool all)
     {
         w = w / 2;
-
-        Vector3[] q;
-        if (all)
-        {
-            q = new Vector3[4];
-        }
-        else
-        {
-            q = new Vector3[2];
-        }
-
+        Vector3[] q = all ? new Vector3[4] : new Vector3[2];
         Vector3 n = Vector3.Cross(s, e);
         Vector3 l = Vector3.Cross(n, e - s);
         l.Normalize();
@@ -94,19 +64,14 @@ public class MeshLineRenderer : MonoBehaviour
     void AddLine(Mesh m, Vector3[] quad)
     {
         int vl = m.vertices.Length;
-
-        Vector3[] vs = m.vertices;
-        vs = resizeVertices(vs, 2 * quad.Length);
-
+        Vector3[] vs = resizeVertices(m.vertices, 2 * quad.Length);
         for (int i = 0; i < 2 * quad.Length; i += 2)
         {
             vs[vl + i] = quad[i / 2];
             vs[vl + i + 1] = quad[i / 2];
         }
 
-        Vector2[] uvs = m.uv;
-        uvs = resizeUVs(uvs, 2 * quad.Length);
-
+        Vector2[] uvs = resizeUVs(m.uv, 2 * quad.Length);
         if (quad.Length == 4)
         {
             uvs[vl] = Vector2.zero;
@@ -126,7 +91,6 @@ public class MeshLineRenderer : MonoBehaviour
                 uvs[vl + 1] = Vector2.zero;
                 uvs[vl + 2] = Vector2.right;
                 uvs[vl + 3] = Vector2.right;
-
             }
             else
             {
@@ -138,29 +102,21 @@ public class MeshLineRenderer : MonoBehaviour
         }
 
         int tl = m.triangles.Length;
-
-        int[] ts = m.triangles;
-        ts = resizeTriangles(ts, 12);
-
+        int[] ts = resizeTriangles(m.triangles, 12);
         if (quad.Length == 2)
         {
             vl -= 4;
         }
 
-        // front-facing quad
         ts[tl] = vl;
         ts[tl + 1] = vl + 2;
         ts[tl + 2] = vl + 4;
-
         ts[tl + 3] = vl + 2;
         ts[tl + 4] = vl + 6;
         ts[tl + 5] = vl + 4;
-
-        // back-facing quad
         ts[tl + 6] = vl + 5;
         ts[tl + 7] = vl + 3;
         ts[tl + 8] = vl + 1;
-
         ts[tl + 9] = vl + 5;
         ts[tl + 10] = vl + 7;
         ts[tl + 11] = vl + 3;
@@ -179,7 +135,6 @@ public class MeshLineRenderer : MonoBehaviour
         {
             nvs[i] = ovs[i];
         }
-
         return nvs;
     }
 
@@ -190,7 +145,6 @@ public class MeshLineRenderer : MonoBehaviour
         {
             nvs[i] = uvs[i];
         }
-
         return nvs;
     }
 
@@ -201,7 +155,6 @@ public class MeshLineRenderer : MonoBehaviour
         {
             nvs[i] = ovs[i];
         }
-
         return nvs;
     }
 }
