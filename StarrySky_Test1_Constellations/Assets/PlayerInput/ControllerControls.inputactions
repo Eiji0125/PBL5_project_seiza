@@ -6,7 +6,7 @@
             "id": "bcb80f56-c49c-450c-9cac-7bbb952252aa",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "ToggleMenu",
                     "type": "Button",
                     "id": "b7ce404d-cdb5-4689-9e97-6f98b40b283f",
                     "expectedControlType": "Button",
@@ -23,29 +23,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9238577d-4a1a-4428-8b98-4db4a4e88dd8",
-                    "path": "<ViveController>{RightHand}/trackpadClicked",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "New control scheme",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "40789820-46f5-4c5b-94a6-f0f89f89904b",
-                    "path": "<ViveController>{LeftHand}/trackpadTouched",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
+                    "action": "ToggleMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -56,7 +34,7 @@
             "id": "15bd0564-eeb1-44b3-9202-a0b941c89652",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "SelectMenu",
                     "type": "Button",
                     "id": "c0e155f7-9a77-4ade-8b40-4a6b55756f4b",
                     "expectedControlType": "Button",
@@ -73,7 +51,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "SelectMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -85,12 +63,12 @@
             "actions": [
                 {
                     "name": "New action",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "f9ac5665-3819-4df5-ae2c-b1de0f871836",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -112,13 +90,13 @@
             "id": "7bb9873a-53f9-4ca2-ba6d-194aa769878c",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
+                    "name": "DrawLine",
+                    "type": "Value",
                     "id": "19f92ef9-cfe9-4c24-b3b3-763dc709f51e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -129,18 +107,12 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "DrawLine",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": [
-        {
-            "name": "New control scheme",
-            "bindingGroup": "New control scheme",
-            "devices": []
-        }
-    ]
+    "controlSchemes": []
 }

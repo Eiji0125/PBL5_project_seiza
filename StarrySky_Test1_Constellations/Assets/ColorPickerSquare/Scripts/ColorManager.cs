@@ -16,13 +16,6 @@ public class ColorManager : MonoBehaviour {
 
     void Awake()
     {
-
-        openMenuAction.action.Enable();
-        openMenuAction.action.performed += ToggleMenu;
-        InputSystem.onDeviceChange += OnDeviceChange;
-
-        Debug.Log(openMenuAction.action);
-
         //Check if instance already exists
         if (instance == null)
 
@@ -40,7 +33,9 @@ public class ColorManager : MonoBehaviour {
 
         //cloudLabel = Instantiate(Resources.Load("CloudLabel", typeof(GameObject)), new Vector3(100.0f, 100.0f, 100.0f), Quaternion.identity) as GameObject;
 
-
+	openMenuAction.action.Enable();
+	openMenuAction.action.performed += ToggleMenu;
+	InputSystem.onDeviceChange += OnDeviceChange;
     }
 
     public void OnDestroy()
@@ -53,8 +48,6 @@ public class ColorManager : MonoBehaviour {
     private void ToggleMenu(InputAction.CallbackContext context)
     {
         menuPanel.SetActive(!menuPanel.activeSelf);
-
-        Debug.Log("Pressed");
     }
 
     private void OnDeviceChange(InputDevice device, InputDeviceChange change)
