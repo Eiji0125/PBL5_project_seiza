@@ -54,6 +54,14 @@
       "type": "vector2"
     },
     {
+      "name": "/actions/default/in/InteractUI",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/Draw",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
@@ -85,6 +93,26 @@
       "name": "/actions/mixedreality/in/ExternalCamera",
       "type": "pose",
       "requirement": "optional"
+    },
+    {
+      "name": "/actions/SelectMenu/in/SelectFromMenu",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/SelectMenu/in/TouchpadTouch",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/SelectMenu/in/TouchpadClick",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/SelectMenu/in/DrawWithTrigger",
+      "type": "vector1"
+    },
+    {
+      "name": "/actions/SelectMenu/in/SelectRayCast",
+      "type": "vector3"
     }
   ],
   "action_sets": [
@@ -102,6 +130,10 @@
     },
     {
       "name": "/actions/mixedreality",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/SelectMenu",
       "usage": "single"
     }
   ],

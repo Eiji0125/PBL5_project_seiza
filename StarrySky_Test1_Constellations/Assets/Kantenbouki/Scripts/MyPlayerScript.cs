@@ -7,9 +7,10 @@ public class MyPlayerScript : MonoBehaviour
     {
         var gamepad = Gamepad.current;
         if (gamepad == null)
+        {
             Debug.Log("No GamePad Detected");
-
             return; // No gamepad connected.
+        }
 
         if (gamepad.rightTrigger.wasPressedThisFrame)
         {
@@ -19,7 +20,6 @@ public class MyPlayerScript : MonoBehaviour
 
         Vector2 move = gamepad.leftStick.ReadValue();
         // 'Move' code here
-            Debug.Log("Left Stick Pressed");
-
+        Debug.Log("Left Stick Pressed: " + move);
     }
 }

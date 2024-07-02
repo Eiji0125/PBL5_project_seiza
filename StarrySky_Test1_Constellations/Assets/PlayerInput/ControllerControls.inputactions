@@ -2,41 +2,40 @@
     "name": "ControllerControls",
     "maps": [
         {
-            "name": "ToggleMenu",
-            "id": "bcb80f56-c49c-450c-9cac-7bbb952252aa",
+            "name": "PlayerInput",
+            "id": "35488234-3df4-43e9-8a41-0ea848869708",
             "actions": [
                 {
                     "name": "ToggleMenu",
                     "type": "Button",
-                    "id": "b7ce404d-cdb5-4689-9e97-6f98b40b283f",
+                    "id": "030e3bf8-4aaa-4074-972f-348c4888e7bb",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "afd14d9c-3e6d-4f16-b800-c6af928ed84c",
-                    "path": "<ViveController>/trackpadClicked",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ToggleMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "SelectMenu",
-            "id": "15bd0564-eeb1-44b3-9202-a0b941c89652",
-            "actions": [
+                    "initialStateCheck": true
+                },
                 {
                     "name": "SelectMenu",
                     "type": "Button",
-                    "id": "c0e155f7-9a77-4ade-8b40-4a6b55756f4b",
+                    "id": "8ba2100a-6e0b-41d7-bc95-ee9c60784c7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ChangeDrawDistance",
+                    "type": "Value",
+                    "id": "b59fbb46-cd6a-4961-8b27-eff0741d2f98",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "DrawLine",
+                    "type": "Button",
+                    "id": "986502f2-f960-4a3f-a0b2-4b5861372b90",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -46,68 +45,45 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "2ec192f4-6c48-414a-97fc-dcfd69e26d6c",
+                    "id": "0a01b2ee-50e8-4434-981d-66f824edcff5",
+                    "path": "<ViveController>/trackpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeDrawDistance",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b1e81ff6-904b-43eb-afef-088a1231c056",
                     "path": "<ViveController>/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DrawLine",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22b5c388-8aa8-46b6-bb2d-d3c9775e3c03",
+                    "path": "*/{TriggerButton}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "SelectMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "ChangeDrawDistance",
-            "id": "ff7a6937-cb16-48d8-a634-3682a35a8398",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Value",
-                    "id": "f9ac5665-3819-4df5-ae2c-b1de0f871836",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "e2f8641c-5f31-4f91-95aa-364ce7478f94",
-                    "path": "<ViveController>/trackpadTouched",
+                    "id": "f6d4e129-5f51-44cd-a527-2f013ab18495",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "DrawLine",
-            "id": "7bb9873a-53f9-4ca2-ba6d-194aa769878c",
-            "actions": [
-                {
-                    "name": "DrawLine",
-                    "type": "Value",
-                    "id": "19f92ef9-cfe9-4c24-b3b3-763dc709f51e",
-                    "expectedControlType": "Vector3",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "92f3f17a-b08a-478b-9912-94afb9359b46",
-                    "path": "<ViveController>/triggerPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DrawLine",
+                    "action": "ToggleMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
